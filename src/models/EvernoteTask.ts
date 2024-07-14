@@ -39,6 +39,6 @@ export const mapEvernoteTask = (pureTask: any): EvernoteTask => {
 
 const getDateFromProperty = (property: string) => {
     return property
-        ?  moment(property, 'YYYYMMDDThhmmssZ').toDate()
+        ?  moment(property, 'YYYYMMDDTHHmmssZ').toDate()
         : undefined;
 };
