@@ -97,11 +97,11 @@ export const createRootOutputDir = (): void => {
 export const getAbsoluteResourceDir = (note: EvernoteNoteData): string => {
   if (yarleOptions.haveGlobalResources) {
     return path.resolve(paths.resourcePath, '..', '..', yarleOptions.resourcesDir);
+  } else if (yarleOptions.haveEnexLevelResources) {
+    return paths.resourcePath;
+  } else {
+    return `${paths.resourcePath}${path.sep}${getResourceDir(paths.mdPath, note)}.resources`;
   }
-
-  return yarleOptions.haveEnexLevelResources
-    ? paths.resourcePath
-    : `${paths.resourcePath}${path.sep}${getResourceDir(paths.mdPath, note)}.resources`;
 };
 
 const resourceDirClears = new Map<string, number>();
