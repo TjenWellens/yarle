@@ -46,16 +46,16 @@
 
 
 
-## To where can I import the converted notes? 
+## To where can I import the converted notes?
 
-Any other note taking application which recognizes notes in standard markdown, like NotePlan or Craft, but Yarle supports some others that has specific format requirements too. These are: 
+Any other note taking application which recognizes notes in standard markdown, like NotePlan or Craft, but Yarle supports some others that has specific format requirements too. These are:
 
 <a href="https://github.com/kmaasrud/awesome-obsidian" rel="Awesome Obsidian">Obsidian</a>
 
 <a href="https://github.com/logseq/awesome-logseq" rel="Awesome Logseq">LogSeq</a>
 
 <a href="https://tana.inc" rel= "Tana">Tana</a> (check details and limitations <a href="#tana_limitations">here</a>)
- 
+
 <a href="https://heptabase.com/" rel="Heptabase">Heptabase</a>
 
 
@@ -65,13 +65,13 @@ Any other note taking application which recognizes notes in standard markdown, l
 If you have an idea on how to improve the tool or face any problems, feel free to raise an issue, or even contribute!
 If you like the product, you can give a star here on github, or you can <a href="https://www.buymeacoffee.com/akosbalasko" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-### Yarle's supporters said: 
+### Yarle's supporters said:
 
 <!--START_SECTION:buy-me-a-coffee--><div><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"> from <b>Someone</b> </div>  <div><i>Thanks, this really helped me out of evernote!</i></div><br>
 <div><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"> from <b>john@thebeard.org</b> </div>  <div><i>YARLE has just allowed me to transfer several years-worth of Evernote notes to Obsidian painlessly and astonishingly quickly. Your work has made my day. Thank you.</i></div><br>
 <div><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"><img src="https://github.com/akosbalasko/coffee-to-file/blob/main/assets/bmc-logo.png?raw=true" width="30"> from <b>@opscat</b> </div>  <div><i>Thanks so much!</i></div><br><!--END_SECTION:buy-me-a-coffe-->
 
-## Proud to be suggested by: 
+## Proud to be suggested by:
 
 <a href="https://github.com/kmaasrud/awesome-obsidian" rel="Awesome Obsidian">
 <img src="screens/obsidian-logo.png" alt="drawing" width="100"/>
@@ -153,7 +153,7 @@ To configure Yarle, you must create a config file. By default it looks like this
       ":": "_",
       "\"": "_",
       "/": "_",
-      "\\": "_", 
+      "\\": "_",
       "|": "_",
       "?": "_",
       "*": "_"
@@ -202,7 +202,8 @@ The following configurational properties are available:
 |```plaintextNotesOnly``` |  true or false | skips any notes with attachments (e.g. notes containing pictures)|
 |```useHashTags```|  true or false | whether to add the pound sign in front of tags|
 |```outputFormat```|  ObsidianMD or StandardMD | generates internal file links and highlights in Obsidian-style: highlights are going to be bounded by `==` instead of \` characters, file links are going to be as follows: `![[file-name]]` instead of `![file-name](file-name)`. Possible values: `ObsidianMD` to get Obsidian-style notes, `StandardMD` or skip it completely, if you prefer Standard Markdown format.|
-|```haveEnexLevelResources```|  true or false | stores note resources on global _resources folder per enex export if enabled |
+|```haveGlobalResources```|  true or false | stores note resources on global _resources/ folder, otherwise look at haveEnexLevelResources |
+|```haveEnexLevelResources```|  true or false | stores note resources on global <notebook_name>/_resources/ folder per enex export if enabled, otherwise stores in <notebook_name>/_resources/<note_file_name>/ folder |
 |```monospaceIsCodeBlock```| true or false | if it's true then all deepest elements with monospace font style is recognized as Codeblocks|
 | ```dateFormat``` | string | ISO 8601 specification of the expected date format (e.g. YYYY-MM-DD)
 |```keepMDCharactersOfENNotes```| true or false | set it true, if you used Markdown format in your EN notes|
@@ -212,7 +213,7 @@ The following configurational properties are available:
 | ```urlEncodeFileNamesAndLinks``` | true or false | URL-encodes linked file names and internal EN links . e.g "linked file.jpg" will be converted to "linked%20file.jpg"
 | ```sanitizeResourceNameSpaces``` | true or false | Replace spaces in resource names with the `replacementChar`. e.g "linked file.jpg" will be converted to "linked_file.jpg"
 | ```replacementChar``` | string | the replacement character. e.g "linked*file.jpg" will be converted to "linked_file.jpg". It defaults to "_"
-| ```replacementCharacterMap``` | JSON Object | it contains character key-value pairs, the keys will be replaced by the proper values in the filename 
+| ```replacementCharacterMap``` | JSON Object | it contains character key-value pairs, the keys will be replaced by the proper values in the filename
 | ```globalReplacementSettings``` | JSON Array | it contains search and replace pairs, the keys will be replaced by the proper values according to the given type (title or content). Please note: this property has to be in valid JSON Array format, and each item has to have <b>type</b> ('title' or 'content'), <b>regex</b> (what you want to replace as a valid regular expression) and <b>replace</b> (what you want to push instead of the matched text) properties)
 | ```keepOriginalAmountOfNewlines``` | true or false | keep the original amount of newlines, default is false, when the multiple newlines are collapsed to one.
 | ```generateNakedUrls``` | true or false | if it's true, Yarle generates 'naked' external Urls without any extra characters. If its false, external Urls are wrapped by  '<' and '>' characters
@@ -221,7 +222,7 @@ The following configurational properties are available:
 | ```obsidianSettings``` | `{...}` | settings for Obsidian output. Currently, ```omitLinkDisplayName``` is supported. If set to `true` links will be of the form `[[foo]]`. Conversely they will be of the form `[[foo|bar]]`. Defaults to `false`.
 | ```logseqSettings``` | `{...}` | settings for Logseq output, currently ```journalNotes``` property is supported, if it is set to `true`, then the notes will be converted to be recognizable by Logseq as Journal notes, the notes will be named by their creation date and they will be collected under `journal` folder. If it is `false`, then they will be converted to be `Pages` (e.g. simple notes, collected in `pages` folder).
 | ```taskOutputFormat``` | `ObsidianMD` or `StandardMD` | Output format of Evernote v10+ tasks. ObsidianMD will connvert tasks to match with Obsidian Tasks plugin's requirements. StandardMD will create plain tasks, loosing many features like reminders or due dates.
-| ```obsidianTaskTag``` | string | a tag to put to a task converted from Evernote v10+ tasks. Optional by Obsidian Tasks plugin, pls check the details there. 
+| ```obsidianTaskTag``` | string | a tag to put to a task converted from Evernote v10+ tasks. Optional by Obsidian Tasks plugin, pls check the details there.
 | ```trimStartingTabs``` | true or false | Removes the tab characters from the beginning of every line in a note. It is meaningful, because Obsidian recognizes tabs as codeblocks by default and blocks recognition of links (for instance) in the line
 | ```convertPlainHtmlNewlines``` | true or false |  Yarle converts newline html tags to newlines, even if they are within Evernote paragraphs.   
 | ```encryptionPasswords``` | string | list of passwords used in any notes, separated by commas
@@ -233,26 +234,26 @@ The following configurational properties are available:
 Metadata settings can be set via the template.
 
 
-## Note links over notebooks? No problem, here is what to do: 
+## Note links over notebooks? No problem, here is what to do:
 
 In order to minimize the wrong conversion of links due to duplicated note names, you need to do the followings:
 
 1. Before export your notes: select all withing a notebook
 2. Create a Table of Contents note
-3. Export the notebook together with the TOC file 
+3. Export the notebook together with the TOC file
 4. Start yarle and convert your notes
 
-## <img src="screens/tana-logo.svg" alt="drawing" width="50"/>  Converting notes to Tana 
+## <img src="screens/tana-logo.svg" alt="drawing" width="50"/>  Converting notes to Tana
 
-Yarle converts your notes to Tana Internal Format. To achieve this, the only thing you need to do differently than the default usage is to the output format as Tana Internal Format. The conversion will produce one file only called `notes-in-TIF.json`. It will contain all of your notes in Tana Internal Format, then you can import this file to Tana. 
+Yarle converts your notes to Tana Internal Format. To achieve this, the only thing you need to do differently than the default usage is to the output format as Tana Internal Format. The conversion will produce one file only called `notes-in-TIF.json`. It will contain all of your notes in Tana Internal Format, then you can import this file to Tana.
 
 ### Limitations
 <div id="tana_limitations"><div>
 
 Currently Yarle (or any other converter), cannot convert images into Tana Internal Format. Moreover Yarle converts Evernote tables to Tana as plain text.
 
-Once Tana Internal Format supports these features, we are glad to fill these gaps in the conversion. 
+Once Tana Internal Format supports these features, we are glad to fill these gaps in the conversion.
 
 ## <img src="screens/hepta-logo.png" alt="drawing" width="50"/> Converting notes to Heptabase
 
-Just select Heptabase as output format, and then a zip is going to be created as a result of the conversion that contains all of your notes with images, everything together, prepared to be uploaded to Heptabase. 
+Just select Heptabase as output format, and then a zip is going to be created as a result of the conversion that contains all of your notes with images, everything together, prepared to be uploaded to Heptabase.
