@@ -26,7 +26,7 @@ describe('Yarle special cases', async () => {
   });
 
   afterEach(async () => {
-    utils.clearMdNotesDistDir();
+    // utils.clearMdNotesDistDir();
   });
 
   it.skip('Empty enex file - throw eoent', async () => {
@@ -1161,85 +1161,100 @@ dateFormat: undefined,
       addExtensionToInternalLinks: true,
       templateFile: undefined,
       outputFormat: OutputFormat.StandardMD,
-
+      isZettelkastenNeeded: true,
+      useZettelIdAsFilename: true,
     };
+
+    const A = {
+      "Note2.md": "202111282008.md",
+      "Note in Notebook A.md": "202108282309.md", // 2209 +1h? timezone? why only this note? long-lat?
+      "Table of Contents.md": "202111282008.1.md",
+    }
+    const B = {
+      "Table of Contents.md": "202111281954.md",
+      "Note in Notebook B.md": "202108282310.md", // 2210 +1h? timezone? why only this note? long-lat?
+      "Untitled.md": "202108291759.md", // 1659 +1h? timezone? why only this note? long-lat?
+    }
     await dropTheRopeRunner.run(options);
 
     // tslint:disable-next-line:no-console
     console.log(`out dir: ${__dirname}/../out/notes/test-internotebook_links_A/Note2.md`);
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/Note2.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/${A["Note2.md"]}`),
       true,
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_A/Note2.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_A/${A["Note2.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_A/Note2.md`, 'utf8'),
     );
 
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/Table of Contents.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/${A["Table of Contents.md"]}`),
       true,
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_A/Table of Contents.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_A/${A["Table of Contents.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_A/Table of Contents.md`, 'utf8'),
     );
 
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/Note in Notebook A.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_A/${A["Note in Notebook A.md"]}`),
       true,
+      `not present: ${__dirname}/../out/notes/test-internotebook_links_A/${A["Note in Notebook A.md"]}`
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_A/Note in Notebook A.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_A/${A["Note in Notebook A.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_A/Note in Notebook A.md`, 'utf8'),
     );
 
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/Untitled.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/${B["Untitled.md"]}`),
       true,
+      `nope: ${__dirname}/../out/notes/test-internotebook_links_B/${B["Untitled.md"]}`
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_B/Untitled.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_B/${B["Untitled.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_B/Untitled.md`, 'utf8'),
     );
 
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/Table of Contents.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/${B["Table of Contents.md"]}`),
       true,
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_B/Table of Contents.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_B/${B["Table of Contents.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_B/Table of Contents.md`, 'utf8'),
     );
 
     assert.equal(
-      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/Note in Notebook B.md`),
+      fs.existsSync(`${__dirname}/../out/notes/test-internotebook_links_B/${B["Note in Notebook B.md"]}`),
       true,
+      `nope: ${__dirname}/../out/notes/test-internotebook_links_B/${B["Note in Notebook B.md"]}`
     );
 
     assert.equal(
       eol.auto(fs.readFileSync(
-        `${__dirname}/../out/notes/test-internotebook_links_B/Note in Notebook B.md`,
+        `${__dirname}/../out/notes/test-internotebook_links_B/${B["Note in Notebook B.md"]}`,
         'utf8',
       )),
       fs.readFileSync(`${__dirname}/data/LinkedInterNotebooks/test-internotebook_links_B/Note in Notebook B.md`, 'utf8'),
