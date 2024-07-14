@@ -24,6 +24,8 @@ export const run = async (opts?: YarleOptions) => {
     const options: YarleOptions = {...require(configFile), ...opts};
     if (options.enexSources.length === 1 && options.enexSources[0].endsWith('.enex')) {
         loggerInfo(`Converting notes in file: ${options.enexSources}`);
+    } else if (options.enexSources.length > 1 && options.enexSources.filter(s => !s.endsWith('.enex')).length === 0) {
+        loggerInfo(`Converting notes in files: ${options.enexSources}`);
     } else {
         const enexFiles = fs
             .readdirSync(options.enexSources[0])
